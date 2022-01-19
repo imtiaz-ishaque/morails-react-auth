@@ -1,15 +1,20 @@
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Layout, Tabs } from "antd";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  /* Redirect, */
+} from "react-router-dom";
+import { Layout /* Tabs */ } from "antd";
 
 import Chains from "./components/Chains";
-import TokenPrice from "./components/TokenPrice";
+/* import TokenPrice from "./components/TokenPrice"; */
 import NativeBalance from "./components/NativeBalance";
 import Account from "./components/Account/Account";
 import NFTBalance from "./components/NFTBalance";
 
-import Text from "antd/lib/typography/Text";
+/* import Text from "antd/lib/typography/Text"; */
 import "antd/dist/antd.css";
 
 import "./style.css";
@@ -62,7 +67,7 @@ function App({ isServerInfo }) {
 
   return (
     <Layout style={{ height: "100vh", overflow: "auto" }}>
-      <BrowserRouter>
+      <Router>
         <Header style={styles.header}>
           <Logo />
           <MenuItems />
@@ -80,8 +85,10 @@ function App({ isServerInfo }) {
         </Header>
 
         <div style={styles.content}>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
             <Route path="/wallet">{/* <Wallet /> */}</Route>
             {/* <Route path="/1inch"> */}
             {/* <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
@@ -99,7 +106,9 @@ function App({ isServerInfo }) {
             <Route path="/erc20balance">{/* <ERC20Balance /> */}</Route>
             <Route path="/onramp">{/* <Ramper /> */}</Route>
             <Route path="/erc20transfers">{/* <ERC20Transfers /> */}</Route>
-            <Route path="/nftBalance" element={<NFTBalance />} />
+            <Route path="/nftBalance">
+              <NFTBalance />
+            </Route>
             <Route path="/contract">{/* <Contract /> */}</Route>
             {/* <Route path="/">
               <Home />
@@ -110,9 +119,9 @@ function App({ isServerInfo }) {
             <Route path="/nonauthenticated">
               <>Please login using the "Authenticate" button</>
             </Route>
-          </Routes>
+          </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
       <Footer style={{ textAlign: "center" }}>
         {/* <Text style={{ display: "block" }}>
           ⭐️ Please star this{" "}
