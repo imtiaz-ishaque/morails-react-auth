@@ -7,11 +7,8 @@ import Home from "./pages/Home";
 
 import "./index.css";
 
-//const SERVER_URL = "https://7q2hw278ilrg.usemoralis.com:2053/server";
-//const APP_ID = "5SrZ5BuBMTy3lxx7NfBoIk0BHAoExNboADhggeUh";
-
-const SERVER_URL = "https://6tdxhzw6f0ea.usemoralis.com:2053/server";
-const APP_ID = "0pyN7kJBmqn6e9Sxvv6jgbcxMpd1QRfcM2TFz8gS";
+const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
+const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 
 const Application = () => {
   const isServerInfo = APP_ID && SERVER_URL ? true : false;
