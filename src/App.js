@@ -1,13 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  /* Redirect, */
+  NavLink,
+  Redirect,
 } from "react-router-dom";
 import { Layout /* Tabs */ } from "antd";
-
+import SelectCollection from "./components/SearchCollections";
 import Chains from "./components/Chains";
 /* import TokenPrice from "./components/TokenPrice"; */
 import NativeBalance from "./components/NativeBalance";
@@ -58,6 +59,8 @@ function App({ isServerInfo }) {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
     useMoralis();
 
+  const [InputValue, setInputValue] = useState("explore");
+
   useEffect(() => {
     const connectorId = window.localStorage.getItem("connectorId");
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
@@ -70,6 +73,7 @@ function App({ isServerInfo }) {
       <Router>
         <Header style={styles.header}>
           <Logo />
+          <SelectCollection setInputValue={setInputValue} />
           <MenuItems />
           <div style={styles.headerRight}>
             <Chains />

@@ -20,6 +20,15 @@ const MenuItems = () => {
       <Menu.Item key="/">
         <NavLink to="/">🚀 Home</NavLink>
       </Menu.Item>
+      <Menu.Item key="/NFTMarketPlace">
+        <NavLink to="/NFTMarketPlace">🛒 Explore Market</NavLink>
+      </Menu.Item>
+      <Menu.Item key="/nftBalance">
+        <NavLink to="/nftBalance">🖼 Your Collection</NavLink>
+      </Menu.Item>
+      <Menu.Item key="/Transactions">
+        <NavLink to="/Transactions">📑 Your Transactions</NavLink>
+      </Menu.Item>
       {/* <Menu.Item key="/wallet">
         <NavLink to="/wallet">👛 Wallet</NavLink>
       </Menu.Item> */}
@@ -35,9 +44,6 @@ const MenuItems = () => {
       {/* <Menu.Item key="/erc20transfers">
         <NavLink to="/erc20transfers">💸 Transfers</NavLink>
       </Menu.Item> */}
-      <Menu.Item key="/nftBalance">
-        <NavLink to="/nftBalance">🖼 NFTs</NavLink>
-      </Menu.Item>
       {/* <Menu.Item key="/contract">
         <NavLink to="/contract">📄 Contract</NavLink>
       </Menu.Item> */}
