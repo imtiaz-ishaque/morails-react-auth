@@ -4,8 +4,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  NavLink,
-  Redirect,
+  /* NavLink,
+  Redirect, */
 } from "react-router-dom";
 import { Layout /* Tabs */ } from "antd";
 import SelectCollection from "./components/SearchCollections";
@@ -14,7 +14,8 @@ import Chains from "./components/Chains";
 import NativeBalance from "./components/NativeBalance";
 import Account from "./components/Account/Account";
 import NFTBalance from "./components/NFTBalance";
-
+import NFTTokenIds from "./components/NFTTokenIds";
+import NFTMarketTransactions from "./components/NFTMarketTransactions";
 /* import Text from "antd/lib/typography/Text"; */
 import "antd/dist/antd.css";
 
@@ -59,7 +60,7 @@ function App({ isServerInfo }) {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
     useMoralis();
 
-  const [InputValue, setInputValue] = useState("explore");
+  const [inputValue, setInputValue] = useState("explore");
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem("connectorId");
@@ -74,7 +75,7 @@ function App({ isServerInfo }) {
         <Header style={styles.header}>
           <Logo />
           <SelectCollection setInputValue={setInputValue} />
-          <MenuItems />
+          <MenuItems setInputValue={setInputValue} />
           <div style={styles.headerRight}>
             <Chains />
             {/* <TokenPrice
@@ -93,6 +94,18 @@ function App({ isServerInfo }) {
             <Route exact path="/">
               <Home />
             </Route>
+            <Route path="/nftBalance">
+              <NFTBalance />
+            </Route>
+            <Route path="/NFTMarketPlace">
+              <NFTTokenIds
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+              />
+            </Route>
+            <Route path="/Transactions">
+              <NFTMarketTransactions />
+            </Route>
             <Route path="/wallet">{/* <Wallet /> */}</Route>
             {/* <Route path="/1inch"> */}
             {/* <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
@@ -110,9 +123,6 @@ function App({ isServerInfo }) {
             <Route path="/erc20balance">{/* <ERC20Balance /> */}</Route>
             <Route path="/onramp">{/* <Ramper /> */}</Route>
             <Route path="/erc20transfers">{/* <ERC20Transfers /> */}</Route>
-            <Route path="/nftBalance">
-              <NFTBalance />
-            </Route>
             <Route path="/contract">{/* <Contract /> */}</Route>
             {/* <Route path="/">
               <Home />
@@ -167,7 +177,7 @@ function App({ isServerInfo }) {
 
 export const Logo = () => (
   <div style={{ display: "flex" }}>
-    <img src={weblogo} alt="logo" width={80} height={50} />
+    <img src={weblogo} alt="logo" width={170} />
   </div>
 );
 
