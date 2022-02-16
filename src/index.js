@@ -37,9 +37,7 @@ const Application = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
-      <Application />
-    </MoralisProvider>
+    <Application />
   </React.StrictMode>,
   document.getElementById("root")
 );

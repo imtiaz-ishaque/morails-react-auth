@@ -9,6 +9,6 @@ export const useAPIContract = (options) => {
     error,
     isLoading,
   } = useMoralisWeb3ApiCall(native.runContractFunction, { ...options });
-
+  console.log("contract data:", data);
   return { runContractFunction, contractResponse, error, isLoading };
 };
