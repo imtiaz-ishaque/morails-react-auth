@@ -50,7 +50,7 @@ function NFTBalance() {
     await contractProcessor.fetch({
       params: ops,
       onSuccess: () => {
-        console.log("success");
+        //console.log("success");
         setLoading(false);
         setVisibility(false);
         addItemImage();
@@ -63,23 +63,33 @@ function NFTBalance() {
     });
   }
 
-
   async function approveAll(nft) {
-    setLoading(true);  
+    setLoading(true);
     const ops = {
       contractAddress: nft.token_address,
       functionName: "setApprovalForAll",
-      abi: [{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"}],
+      abi: [
+        {
+          inputs: [
+            { internalType: "address", name: "operator", type: "address" },
+            { internalType: "bool", name: "approved", type: "bool" },
+          ],
+          name: "setApprovalForAll",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
       params: {
         operator: marketAddress,
-        approved: true
+        approved: true,
       },
     };
 
     await contractProcessor.fetch({
       params: ops,
       onSuccess: () => {
-        console.log("Approval Received");
+        //console.log("Approval Received");
         setLoading(false);
         setVisibility(false);
         succApprove();
@@ -215,20 +225,19 @@ function NFTBalance() {
         onOk={() => list(nftToSend, price)}
         okText="List"
         footer={[
-          <Button onClick={() => setVisibility(false)}>
-            Cancel
-          </Button>,
+          <Button onClick={() => setVisibility(false)}>Cancel</Button>,
           <Button onClick={() => approveAll(nftToSend)} type="primary">
             Approve
           </Button>,
           <Button onClick={() => list(nftToSend, price)} type="primary">
             List
-          </Button>
+          </Button>,
         ]}
       >
         <Spin spinning={loading}>
           <img
             src={`${nftToSend?.image}`}
+            alt={`${nftToSend?.image}`}
             style={{
               width: "250px",
               margin: "auto",

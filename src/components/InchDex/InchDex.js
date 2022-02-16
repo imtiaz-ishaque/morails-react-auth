@@ -141,7 +141,7 @@ function InchDex({ chain }) {
     const Quote = quote;
     if (!Quote || !tokenPricesUSD?.[toToken?.["address"]]) return null;
     if (Quote?.statusCode === 400) return <>{Quote.message}</>;
-    console.log(Quote);
+    //console.log(Quote);
     const { fromTokenAmount, toTokenAmount } = Quote;
     const { symbol: fromSymbol } = fromToken;
     const { symbol: toSymbol } = toToken;

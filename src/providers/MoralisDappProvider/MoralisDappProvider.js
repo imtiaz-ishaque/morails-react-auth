@@ -72,13 +72,13 @@ function MoralisDappProvider({ children }) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setChainId(web3.givenProvider?.chainId));
-  useEffect(
-    () =>
-      setWalletAddress(
-        web3.givenProvider?.selectedAddress || user?.get("ethAddress")
-      ),
-    [web3, user]
-  );
+  useEffect(() => {
+    if (user?.get("ethAddress")) {
+      setWalletAddress(user?.get("ethAddress"));
+    } else {
+      setWalletAddress(web3.givenProvider?.selectedAddress);
+    }
+  }, [web3, user]);
 
   return (
     <MoralisDappContext.Provider

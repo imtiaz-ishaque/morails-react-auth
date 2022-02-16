@@ -19,7 +19,7 @@ export default function Contract() {
     live: true,
   });
 
-  useEffect(() => console.log("New data: ", data), [data]);
+  useEffect(() => //console.log("New data: ", data), [data]);
 
   const displayedContractFunctions = useMemo(() => {
     if (!abi) return [];
@@ -32,7 +32,7 @@ export default function Contract() {
       message,
       description,
       onClick: () => {
-        console.log("Notification Clicked!");
+        //console.log("Notification Clicked!");
       },
     });
   };
@@ -105,7 +105,7 @@ export default function Contract() {
                   message: "🔊 New Transaction",
                   description: `${hash}`,
                 });
-                console.log("🔊 New Transaction", hash);
+                //console.log("🔊 New Transaction", hash);
               })
                 .on("receipt", (receipt) => {
                   setResponses({
@@ -116,10 +116,10 @@ export default function Contract() {
                     message: "📃 New Receipt",
                     description: `${receipt.transactionHash}`,
                   });
-                  console.log("🔊 New Receipt: ", receipt);
+                  //console.log("🔊 New Receipt: ", receipt);
                 })
                 .on("error", (error) => {
-                  console.log(error);
+                  //console.log(error);
                 });
             } else {
               Moralis.executeFunction(options).then((response) =>

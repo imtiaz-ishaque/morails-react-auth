@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useMoralis } from "react-moralis";
 import useChain from "hooks/useChain";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { Menu, Dropdown, Button } from "antd";
@@ -27,72 +28,73 @@ const menuItems = [
     value: "Ethereum",
     icon: <ETHLogo />,
   },
-  // {
-  //   key: "0x539",
-  //   value: "Local Chain",
-  //   icon: <ETHLogo />,
-  // },
-  // {
-  //   key: "0x3",
-  //   value: "Ropsten Testnet",
-  //   icon: <ETHLogo />,
-  // },
-  // {
-  //   key: "0x4",
-  //   value: "Rinkeby Testnet",
-  //   icon: <ETHLogo />,
-  // },
-  // {
-  //   key: "0x2a",
-  //   value: "Kovan Testnet",
-  //   icon: <ETHLogo />,
-  // },
-  // {
-  //   key: "0x5",
-  //   value: "Goerli Testnet",
-  //   icon: <ETHLogo />,
-  // },
-  // {
-  //   key: "0x38",
-  //   value: "Binance",
-  //   icon: <BSCLogo />,
-  // },
-  // {
-  //   key: "0x61",
-  //   value: "Smart Chain Testnet",
-  //   icon: <BSCLogo />,
-  // },
-  // {
-  //   key: "0x89",
-  //   value: "Polygon",
-  //   icon: <PolygonLogo />,
-  // },
+  {
+    key: "0x539",
+    value: "Local Chain",
+    icon: <ETHLogo />,
+  },
+  {
+    key: "0x3",
+    value: "Ropsten Testnet",
+    icon: <ETHLogo />,
+  },
+  {
+    key: "0x4",
+    value: "Rinkeby Testnet",
+    icon: <ETHLogo />,
+  },
+  {
+    key: "0x2a",
+    value: "Kovan Testnet",
+    icon: <ETHLogo />,
+  },
+  {
+    key: "0x5",
+    value: "Goerli Testnet",
+    icon: <ETHLogo />,
+  },
+  {
+    key: "0x38",
+    value: "Binance",
+    icon: <BSCLogo />,
+  },
+  {
+    key: "0x61",
+    value: "Smart Chain Testnet",
+    icon: <BSCLogo />,
+  },
+  {
+    key: "0x89",
+    value: "Polygon",
+    icon: <PolygonLogo />,
+  },
   {
     key: "0x13881",
     value: "Mumbai",
     icon: <PolygonLogo />,
   },
-  // {
-  //   key: "0xa86a",
-  //   value: "Avalanche",
-  //   icon: <AvaxLogo />,
-  // },
+  {
+    key: "0xa86a",
+    value: "Avalanche",
+    icon: <AvaxLogo />,
+  },
 ];
 
 function Chains() {
   const { switchNetwork } = useChain();
   const { chainId } = useMoralisDapp();
+  const { isAuthenticated } = useMoralis();
   const [selected, setSelected] = useState({});
 
   useEffect(() => {
     if (!chainId) return null;
     const newSelected = menuItems.find((item) => item.key === chainId);
     setSelected(newSelected);
-    console.log("current chainId: ", chainId);
+    //console.log("current chainId: ", chainId);
   }, [chainId]);
 
   const handleMenuClick = (e) => {
-    console.log("switch to: ", e.key);
+    //console.log("switch to: ", e.key);
     switchNetwork(e.key);
   };
 
@@ -103,9 +105,9 @@ function Chains() {
           <span style={{ marginLeft: "5px" }}>{item.value}</span>
         </Menu.Item>
       ))}
-    </Menu> 
+    </Menu>
   );
-
+  if (!chainId || !isAuthenticated) return null;
   return (
     <div>
       <Dropdown overlay={menu} trigger={["click"]}>

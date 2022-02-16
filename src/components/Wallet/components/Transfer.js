@@ -61,11 +61,11 @@ function Transfer() {
       receiver,
       contractAddress: asset.token_address,
     };
-    console.log(isPending);
+    //console.log(isPending);
     setIsPending(true);
     await Moralis.transfer(options)
       .then((tx) => {
-        console.log(tx);
+        //console.log(tx);
         setIsPending(false);
       })
       .catch((e) => {

@@ -8,7 +8,7 @@ function SearchCollections({ setInputValue }) {
   const NFTCollections = getCollectionsByChain(chainId);
 
   function onChange(value) {
-    console.log("value:", value);
+    //console.log("value:", value);
     setInputValue(value);
   }
 

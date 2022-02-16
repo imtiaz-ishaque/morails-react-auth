@@ -7,7 +7,7 @@ import {
   NavLink,
   Redirect,
 } from "react-router-dom";
-import Account from "./components/Account";
+import Account from "./components/Account/Account";
 import Chains from "./components/Chains";
 import NFTBalance from "./components/NFTBalance";
 import NFTTokenIds from "./components/NFTTokenIds";
@@ -59,6 +59,7 @@ const App = ({ isServerInfo }) => {
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem("connectorId");
+    //console.log("ConnectorId:", connectorId);
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
       enableWeb3({ provider: connectorId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -122,39 +123,11 @@ const App = ({ isServerInfo }) => {
         </div>
       </Router>
       <Footer style={{ textAlign: "center" }}>
-        <Text style={{ display: "block" }}>
-          ⭐️ Please star this{" "}
-          <a
-            href="https://github.com/ethereum-boilerplate/ethereum-boilerplate/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            boilerplate
-          </a>
-          , every star makes us very happy!
-        </Text>
+        <Text style={{ display: "block" }}></Text>
 
-        <Text style={{ display: "block" }}>
-          🙋 You have questions? Ask them on the {""}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://forum.moralis.io/t/ethereum-boilerplate-questions/3951/29"
-          >
-            Moralis forum
-          </a>
-        </Text>
+        <Text style={{ display: "block" }}></Text>
 
-        <Text style={{ display: "block" }}>
-          📖 Read more about{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://moralis.io?utm_source=boilerplatehosted&utm_medium=todo&utm_campaign=ethereum-boilerplat"
-          >
-            Moralis
-          </a>
-        </Text>
+        <Text style={{ display: "block" }}></Text>
       </Footer>
     </Layout>
   );

@@ -49,7 +49,7 @@ function Account() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated || !account) {
     return (
       <>
         <div onClick={() => setIsAuthModalVisible(true)}>
@@ -84,7 +84,6 @@ function Account() {
                 style={styles.connector}
                 key={key}
                 onClick={async () => {
-                  //console.log("dil resh");
                   try {
                     await authenticate({ provider: connectorId });
                     window.localStorage.setItem("connectorId", connectorId);
