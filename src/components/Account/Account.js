@@ -8,6 +8,7 @@ import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "../../helpers/networks";
 import Text from "antd/lib/typography/Text";
 import { connectors } from "./config";
+
 const styles = {
   account: {
     height: "42px",
@@ -21,7 +22,9 @@ const styles = {
     cursor: "pointer",
   },
   text: {
-    color: "#21BF96",
+    color: "#fff",
+    width: "250px",
+    cursor: "pointer",
   },
   connector: {
     alignItems: "center",
@@ -44,17 +47,20 @@ const styles = {
 };
 
 function Account() {
-  const { authenticate, isAuthenticated, account, chainId, logout } =
+  const { authenticate, isAuthenticated, chainId, account, logout } =
     useMoralis();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
-
   if (!isAuthenticated) {
     return (
       <>
-        <div onClick={() => setIsAuthModalVisible(true)}>
-          <p style={styles.text}>Authenticate</p>
-        </div>
+        <p
+          style={styles.text}
+          onClick={() => setIsAuthModalVisible(true)}
+          className="btn-grad"
+        >
+          Connect Wallet
+        </p>
         <Modal
           visible={isAuthModalVisible}
           footer={null}
@@ -84,7 +90,7 @@ function Account() {
                 style={styles.connector}
                 key={key}
                 onClick={async () => {
-                  //console.log("dil resh");
+                  console.log("connectorId", connectorId);
                   try {
                     await authenticate({ provider: connectorId });
                     window.localStorage.setItem("connectorId", connectorId);

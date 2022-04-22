@@ -12,7 +12,7 @@ import Chains from "./components/Chains";
 import NFTBalance from "./components/NFTBalance";
 import NFTTokenIds from "./components/NFTTokenIds";
 import { Menu, Layout } from "antd";
-import SearchCollections from "./components/SearchCollections";
+//import SearchCollections from "./components/SearchCollections";
 import "antd/dist/antd.css";
 import NativeBalance from "./components/NativeBalance";
 import "./style.css";
@@ -34,7 +34,8 @@ const styles = {
     position: "fixed",
     zIndex: 1,
     width: "100%",
-    background: "#fff",
+    height: "75px",
+    background: "#08080a",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -50,7 +51,13 @@ const styles = {
     fontSize: "15px",
     fontWeight: "600",
   },
+  text: {
+    color: "#fff",
+    width: "250px",
+    cursor: "pointer",
+  },
 };
+
 const App = ({ isServerInfo }) => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
     useMoralis();
@@ -75,9 +82,9 @@ const App = ({ isServerInfo }) => {
       <Router>
         <Header style={styles.header}>
           <Logo />
-          <SearchCollections setInputValue={setInputValue} />
+          {/* <SearchCollections setInputValue={setInputValue} /> */}
           <Menu
-            theme="light"
+            theme="dark"
             mode="horizontal"
             style={{
               display: "flex",
@@ -89,19 +96,26 @@ const App = ({ isServerInfo }) => {
             defaultSelectedKeys={["nftMarket"]}
           >
             <Menu.Item key="nftMarket" onClick={() => setInputValue("explore")}>
-              <NavLink to="/NFTMarketPlace">🛒 Explore Market</NavLink>
+              <NavLink to="/NFTMarketPlace">NFT In Wallet</NavLink>
             </Menu.Item>
-            <Menu.Item key="nft">
+            {/* <Menu.Item key="nft">
               <NavLink to="/nftBalance">🖼 Your Collection</NavLink>
             </Menu.Item>
             <Menu.Item key="transactions">
               <NavLink to="/Transactions">📑 Your Transactions</NavLink>
-            </Menu.Item>
+            </Menu.Item> */}
           </Menu>
           <div style={styles.headerRight}>
             <Chains />
             <NativeBalance />
             <Account />
+            <a
+              href="http://167.71.196.70/"
+              style={styles.text}
+              className="btn-grad"
+            >
+              Home Page
+            </a>
           </div>
         </Header>
         <div style={styles.content}>
@@ -122,7 +136,7 @@ const App = ({ isServerInfo }) => {
           <Redirect to="/NFTMarketPlace" />
         </div>
       </Router>
-      <Footer style={{ textAlign: "center" }}>
+      <Footer style={{ textAlign: "center" }} className="dark-footer">
         <Text style={{ display: "block" }}></Text>
 
         <Text style={{ display: "block" }}></Text>
@@ -135,7 +149,7 @@ const App = ({ isServerInfo }) => {
 
 export const Logo = () => (
   <div style={{ display: "flex" }}>
-    <img src={weblogo} alt="logo" width={145} />
+    <img src={weblogo} alt="logo" width={370} />
   </div>
 );
 

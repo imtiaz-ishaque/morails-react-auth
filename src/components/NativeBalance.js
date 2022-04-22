@@ -7,9 +7,9 @@ function NativeBalance(props) {
   const { isAuthenticated } = useMoralis();
   if (!isAuthenticated || !nativeName) return null;
   return (
-    <div style={{ textAlign: "center", whiteSpace: "nowrap" }}>{`${n4.format(
-      balance.formatted
-    )} ${nativeName}`}</div>
+    <div
+      style={{ textAlign: "center", whiteSpace: "nowrap", color: "#fff" }}
+    >{`${n4.format(balance.formatted)} ${nativeName}`}</div>
   );
 }
 
